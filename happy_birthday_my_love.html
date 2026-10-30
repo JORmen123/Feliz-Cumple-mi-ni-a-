@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday My Love 🥳❤️</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;700&family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#060308;
+  --pink:#ff2e88;
+  --pink-soft:#ff7ab8;
+  --pink-glow:#ff4da6;
+  --card:#ffffff;
+  --letter:#fff0f6;
+  --text-hand:'Dancing Script', cursive;
+  --text-title:'Great Vibes', cursive;
+  --text-ui:'Poppins', sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{
+  font-family:var(--text-ui);
+  background:radial-gradient(circle at 50% 30%, #1a0410 0%, #0b0208 55%, #000 100%);
+  color:#fff;
+  overflow:hidden;
+  min-height:100vh;
+}
+/* ---------- Fondo de corazones flotantes ---------- */
+.hearts{position:fixed;inset:0;overflow:hidden;z-index:0;pointer-events:none}
+.hearts span{
+  position:absolute;
+  bottom:-40px;
+  color:var(--pink-glow);
+  opacity:.35;
+  filter:drop-shadow(0 0 8px var(--pink-glow));
+  animation:floatUp linear infinite;
+}
+@keyframes floatUp{
+  0%{transform:translateY(0) scale(.6) rotate(0);opacity:0}
+  10%{opacity:.5}
+  90%{opacity:.4}
+  100%{transform:translateY(-110vh) scale(1.1) rotate(360deg);opacity:0}
+}
+.scene{position:relative;z-index:2;width:100%;min-height:100vh;display:flex;align-items:center;justify-content:center;flex-direction:column;padding:24px}
+.hidden{display:none !important}
+/* ---------- Pantalla 1: caja de regalo ---------- */
+#intro{gap:28px}
+.gift-wrap{position:relative;width:200px;height:200px;cursor:pointer;animation:breathe 2.4s ease-in-out infinite}
+@keyframes breathe{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.quest{position:absolute;top:-56px;left:50%;transform:translateX(-50%);font-size:3rem;color:#ffd24d;filter:drop-shadow(0 0 12px #ffd24d);animation:bob 1.6s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-12px)}}
+.gift-box{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:160px;height:130px;background:linear-gradient(145deg,#ff2e88,#c71365);border-radius:10px;box-shadow:0 18px 40px rgba(255,46,136,.45)}
+.gift-box::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:28px;height:100%;background:rgba(255,255,255,.85)}
+.gift-lid{position:absolute;bottom:130px;left:50%;transform:translateX(-50%);width:180px;height:46px;background:linear-gradient(145deg,#ff4da6,#d4166e);border-radius:10px;transition:bottom .6s cubic-bezier(.68,-0.55,.27,1.55),transform .6s,opacity .6s;z-index:3}
+.gift-lid::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:28px;height:100%;background:rgba(255,255,255,.85)}
+.gift-bow{position:absolute;top:-22px;left:50%;transform:translateX(-50%);width:50px;height:50px;background:#fff;border-radius:50%;box-shadow:-26px 6px 0 -6px #fff,26px 6px 0 -6px #fff}
+.inner-heart{position:absolute;bottom:40px;left:50%;transform:translateX(-50%) scale(0);font-size:2.6rem;transition:transform .6s .3s;z-index:1}
+.gift-wrap.open .gift-lid{bottom:200px;transform:translateX(-50%) rotate(14deg);opacity:0}
+.gift-wrap.open .inner-heart{transform:translateX(-50%) scale(1)}
+.gift-wrap.open .quest{opacity:0}
+.tap-hint{font-family:var(--text-hand);font-size:1.5rem;color:var(--pink-soft)}
+#bigTitle{font-family:var(--text-title);font-size:clamp(2.4rem,8vw,4.6rem);text-align:center;color:#fff;text-shadow:0 0 18px var(--pink-glow);opacity:0;transform:scale(.8);transition:opacity 1s,transform 1s}
+#bigTitle.show{opacity:1;transform:scale(1)}
+.btn{font-family:var(--text-ui);font-weight:600;border:none;cursor:pointer;padding:13px 30px;border-radius:40px;background:linear-gradient(135deg,#ff2e88,#ff7ab8);color:#fff;font-size:1rem;box-shadow:0 8px 24px rgba(255,46,136,.5);transition:transform .2s;opacity:0;pointer-events:none}
+.btn.show{opacity:1;pointer-events:auto}
+.btn:hover{transform:translateY(-3px) scale(1.04)}
+/* confeti */
+.confetti{position:fixed;top:-20px;width:10px;height:14px;z-index:5;pointer-events:none;border-radius:2px;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg);opacity:.9}}
+/* ---------- Pantalla 2: galería coverflow ---------- */
+#gallery{gap:22px}
+.gallery-head{font-family:var(--text-hand);font-size:1.7rem;color:var(--pink-soft);text-shadow:0 0 10px rgba(255,122,184,.6)}
+.carousel{position:relative;width:100%;max-width:860px;height:440px;perspective:1400px}
+.card{
+  position:absolute;top:50%;left:50%;width:250px;height:360px;
+  transition:transform .55s cubic-bezier(.4,0,.2,1),opacity .55s,filter .55s;
+  transform-style:preserve-3d;cursor:pointer;will-change:transform;
+}
+.card .face{position:absolute;inset:0;border-radius:18px;backface-visibility:hidden;overflow:hidden;background:var(--card);box-shadow:0 24px 50px rgba(0,0,0,.55);display:flex;flex-direction:column}
+.card .back{transform:rotateY(180deg);background:var(--letter);padding:26px 22px;justify-content:center}
+.card.flipped .front{transform:rotateY(180deg)}
+.card.flipped .back{transform:rotateY(360deg)}
+.card .front,.card .back{transition:transform .6s}
+.photo{flex:1;background-size:cover;background-position:center;display:flex;align-items:flex-end;justify-content:center}
+.photo .emoji{font-size:5rem;filter:drop-shadow(0 4px 10px rgba(0,0,0,.3))}
+.caption{background:#fff;padding:12px 10px;text-align:center}
+.read-btn{display:inline-flex;align-items:center;gap:6px;font-family:var(--text-ui);font-size:.82rem;font-weight:600;color:#c71365;background:#ffe3f0;border:none;padding:7px 15px;border-radius:30px;cursor:pointer}
+.letter-msg{font-family:var(--text-hand);font-size:1.5rem;line-height:1.45;color:#b01260;text-align:center}
+.letter-num{font-family:var(--text-title);font-size:1.3rem;color:var(--pink);margin-bottom:10px;text-align:center}
+.nav{display:flex;align-items:center;gap:22px}
+.nav button{width:52px;height:52px;border-radius:50%;border:2px solid var(--pink);background:rgba(255,46,136,.12);color:var(--pink);font-size:1.4rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.nav button:hover{background:var(--pink);color:#fff;transform:scale(1.08)}
+.counter{font-family:var(--text-ui);font-weight:600;color:var(--pink-soft);min-width:60px;text-align:center}
+.top-hint{position:fixed;top:18px;left:50%;transform:translateX(-50%);font-family:var(--text-hand);font-size:1.3rem;color:var(--pink-soft);z-index:3}
+@media(max-width:600px){.card{width:200px;height:300px}.carousel{height:360px}}
+</style>
+</head>
+<body>
+<div class="hearts" id="hearts"></div>
+<!-- ====== Pantalla 1: regalo ====== -->
+<section class="scene" id="intro">
+  <div class="gift-wrap" id="giftWrap" title="Toca para abrir">
+    <div class="quest">?</div>
+    <div class="gift-lid"><div class="gift-bow"></div></div>
+    <div class="inner-heart">❤️</div>
+    <div class="gift-box"></div>
+  </div>
+  <p class="tap-hint" id="tapHint">Toca el regalo para abrirlo 💝</p>
+  <h1 id="bigTitle">Happy Birthday<br>My beautiful girl with pretty eyes</h1>
+  <button class="btn" id="goGallery">Ver fotografias →</button>
+</section>
+
+<!-- ====== Pantalla 2: galería ====== -->
+<section class="scene hidden" id="gallery">
+  <div class="top-hint">Toca la foto principal</div>
+  <p class="gallery-head">Fotografias que tengo de Ti 💖</p>
+  <div class="carousel" id="carousel"></div>
+  <div class="nav">
+    <button id="prev">←</button>
+    <span class="counter" id="counter">1 / 10</span>
+    <button id="next">→</button>
+  </div>
+</section>
+
+<script>
+/* ======= 1. Corazones flotantes de fondo ======= */
+const heartsBox=document.getElementById('hearts');
+const heartGlyphs=['❤️','💕','💖','💗','💓'];
+for(let i=0;i<28;i++){
+  const s=document.createElement('span');
+  s.textContent=heartGlyphs[Math.floor(Math.random()*heartGlyphs.length)];
+  s.style.left=Math.random()*100+'vw';
+  s.style.fontSize=(14+Math.random()*26)+'px';
+  s.style.animationDuration=(7+Math.random()*9)+'s';
+  s.style.animationDelay=(Math.random()*9)+'s';
+  heartsBox.appendChild(s);
+}
+
+/* ======= 2. Animación de la caja de regalo ======= */
+const giftWrap=document.getElementById('giftWrap');
+const tapHint=document.getElementById('tapHint');
+const bigTitle=document.getElementById('bigTitle');
+const goGallery=document.getElementById('goGallery');
+let opened=false;
+giftWrap.addEventListener('click',()=>{
+  if(opened)return; opened=true;
+  giftWrap.classList.add('open');
+  tapHint.classList.add('hidden');
+  launchConfetti();
+  setTimeout(()=>bigTitle.classList.add('show'),500);
+  setTimeout(()=>goGallery.classList.add('show'),1400);
+});
+
+function launchConfetti(){
+  const colors=['#ff2e88','#ff7ab8','#ffd24d','#ffffff','#ff4da6','#9b59ff'];
+  for(let i=0;i<120;i++){
+    const c=document.createElement('div');
+    c.className='confetti';
+    c.style.left=Math.random()*100+'vw';
+    c.style.background=colors[Math.floor(Math.random()*colors.length)];
+    c.style.animationDuration=(2.2+Math.random()*2.5)+'s';
+    c.style.animationDelay=(Math.random()*.6)+'s';
+    c.style.width=(6+Math.random()*8)+'px';
+    c.style.height=(8+Math.random()*10)+'px';
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),5200);
+  }
+}
+
+/* ======= 3. Transición a la galería ======= */
+goGallery.addEventListener('click',()=>{
+  document.getElementById('intro').classList.add('hidden');
+  document.getElementById('gallery').classList.remove('hidden');
+});
+/* ======= 4. Datos de las tarjetas (edita a tu gusto) ======= */
+// photo: puede ser un emoji o una URL de imagen (usa {img:'ruta.jpg'})
+const recuerdos=[
+  {emoji:'<img src="./one 1.jpg" style="width:160%; heigth:100%; object-position: 70% 0%; margin-left: -65px; border-radius:10px;">', grad:'#ff9a9e,#fecfef', msg:'Durante el poco tiempo que hablo contigo quiero que sepas que te quiero mucho.'},
+  {emoji:'<img src="./one 2.jpg" style="width:100%; heigth:100%; object-position: -1% 70%; margin-left: 0px; border-radius:10px;">', grad:'#fbc2eb,#a6c1ee', msg:'Contigo hasta los días normales se vuelven especiales.'},
+  {emoji:'<img src="./one 3.jpg" style="width:160%; heigth:100%; object-position: 70% 0%; margin-left: -65px; border-radius:80px;">', grad:'#ffdde1,#ee9ca7', msg:'Eres una persona especial en mi vida.'},
+  {emoji:'<img src="./one 5.jpg" style="width:95%; heigth:100%; object-position: -10% 500%; margin-left: 5px; border-radius:10px;">', grad:'#f093fb,#f5576c', msg:'Tu eres una persona que vales mucho y nunca dejes que nadie cambie eso de ti .'},
+  {emoji:'<img src="./one 6.jpg" style="width:85%; heigth:100%; object-position: 0px 15px; margin-left: 20px; margin-top: 15px; border-radius:10px;">', grad:'#a18cd1,#fbc2eb', msg:'Tienes unos ojos lindos asi como tu forma de ser.'},
+  {emoji:'<img src="./one 8.jpg" style="width:150%; heigth:100%; object-position: 0px -35px; margin-left: -55px; margin-top: 45px; border-radius:10px;">', grad:'#ff6a88,#ff99ac', msg:'Feliz cumpleaños a la persona más linda de mi vida.'},
+  {emoji:'<img src="./one 9.jpg" style="width:107%; heigth:100%; object-position: 0px -26px; margin-left: -15px; margin-top: 15px; border-radius:10px;">', grad:'#fa709a,#fee140', msg:'Espero que te la pases bien en tu dia.'},
+  {emoji:'<img src="./one 10.jpg" style="width:105%; heigth:100%; object-position: 0px -5px; margin-left: -3px; margin-top: 15px; border-radius:10px;">', grad:'#ff5f6d,#ffc371', msg:'quiero que sepa que le mando un abrazo fuerte.'},
+  {emoji:'<img src="./one 11.jpg" style="width:85%; heigth:100%; object-position: 0px -20px; margin-left: 20px; margin-top: 15px; border-radius:10px;">', grad:'#c471f5,#fa71cd', msg:'Te quiero, y quiero que pase lo que pase eso nadie lo cambiara.'},
+  {emoji:'<img src="./one 4.jpg" style="width: 77%; heigth:100%; object-position: 0px 15px; margin-left: 33px; margin-top: 5px; border-radius:10px;">', grad:'#ff2e88,#ff7ab8', msg:'Quiero que sepas que las palabras se quedan cortas a todo lo que la quiero, Feliz Cumpleaños mi niña . ❤️'}
+];
+
+/* ======= 5. Construcción del carrusel coverflow ======= */
+const carousel=document.getElementById('carousel');
+const counter=document.getElementById('counter');
+let current=0;
+const cards=[];
+
+recuerdos.forEach((r,i)=>{
+  const card=document.createElement('div');
+  card.className='card';
+  const bg = r.img ? `url('${r.img}')` : `linear-gradient(135deg,${r.grad})`;
+  card.innerHTML=`
+    <div class="face front">
+      <div class="photo" style="background:${bg}">
+        ${r.img?'':'<span class="emoji">'+r.emoji+'</span>'}
+      </div>
+      <div class="caption"><button class="read-btn">↺ Toca para leer</button></div>
+    </div>
+    <div class="face back">
+      <div class="letter-num">${i+1} / ${recuerdos.length}</div>
+      <p class="letter-msg">${r.msg}</p>
+    </div>`;
+  carousel.appendChild(card);
+  cards.push(card);
+
+  card.addEventListener('click',()=>{
+    if(i===current){ card.classList.toggle('flipped'); }
+    else { current=i; render(); }
+  });
+});
+
+function render(){
+  cards.forEach((card,i)=>{
+    const offset=i-current;
+    const abs=Math.abs(offset);
+    if(abs>2){ card.style.opacity=0; card.style.pointerEvents='none'; }
+    else{ card.style.opacity=1; card.style.pointerEvents='auto'; }
+    const tx=offset*150;
+    const scale=i===current?1:.78;
+    const rotate=offset*-22;
+    const tz=i===current?0:-180;
+    card.style.transform=`translate(-50%,-50%) translateX(${tx}px) translateZ(${tz}px) rotateY(${rotate}deg) scale(${scale})`;
+    card.style.filter=i===current?'none':'brightness(.6) blur(1px)';
+    card.style.zIndex=100-abs;
+    if(i!==current) card.classList.remove('flipped');
+  });
+  counter.textContent=`${current+1} / ${recuerdos.length}`;
+}
+
+document.getElementById('prev').addEventListener('click',()=>{current=(current-1+cards.length)%cards.length;render();});
+document.getElementById('next').addEventListener('click',()=>{current=(current+1)%cards.length;render();});
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowLeft'){current=(current-1+cards.length)%cards.length;render();}
+  if(e.key==='ArrowRight'){current=(current+1)%cards.length;render();}
+});
+render();
+</script>
+</body>
+</html>
